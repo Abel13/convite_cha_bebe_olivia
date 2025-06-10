@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=event,home_pin,schedule"
+    />
+
+    <title>Chá de Bebê da Olívia</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+
+        background-color: #fef8f2;
+        color: #7e5750;
+        text-align: center;
+      }
+
+      .container {
+        max-width: 480px;
+        margin: auto;
+        padding: 20px;
+        border-radius: 20px;
+      }
+
+      h1 {
+        font-size: 2.5em;
+        color: #a27b78;
+        margin: 0.2em 0 0;
+        font-family: "Playfair Display", sans-serif;
+      }
+
+      h2 {
+        font-size: 1.6em;
+        color: #bf918c;
+        margin-bottom: 0.4em;
+        font-family: "Great Vibes";
+      }
+
+      p {
+        font-size: 1.1em;
+        margin: 0.5em 0;
+        font-family: "Poppins", sans-serif;
+      }
+
+      img {
+        max-width: 160px;
+        margin: 20px 0;
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6em;
+        background-color: #fae4da;
+        padding: 16px;
+        border-radius: 14px;
+        font-size: 1em;
+        margin: 20px 0;
+      }
+
+      .info span {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1em;
+      }
+
+      .button {
+        display: flex;
+        background-color: #fae5da;
+        color: #7e5750;
+        padding: 20px;
+        border-radius: 35px;
+        text-decoration: none;
+        justify-content: center;
+        font-size: 1em;
+      }
+
+      .footer {
+        margin-top: 30px;
+        font-size: 1.1em;
+        color: #804444;
+      }
+
+      .great-vibes-regular {
+        font-family: "Great Vibes", cursive;
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      .playfair-display-unique {
+        font-family: "Playfair Display", serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+      }
+
+      .poppins-thin {
+        font-family: "Poppins", sans-serif;
+        font-weight: 100;
+        font-style: normal;
+      }
+
+      .poppins-extralight {
+        font-family: "Poppins", sans-serif;
+        font-weight: 200;
+        font-style: normal;
+      }
+
+      .poppins-light {
+        font-family: "Poppins", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+      }
+
+      .poppins-regular {
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      .poppins-medium {
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+      }
+
+      .poppins-semibold {
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        font-style: normal;
+      }
+
+      .poppins-bold {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+      }
+
+      .poppins-extrabold {
+        font-family: "Poppins", sans-serif;
+        font-weight: 800;
+        font-style: normal;
+      }
+
+      .poppins-black {
+        font-family: "Poppins", sans-serif;
+        font-weight: 900;
+        font-style: normal;
+      }
+
+      .poppins-thin-italic {
+        font-family: "Poppins", sans-serif;
+        font-weight: 100;
+        font-style: italic;
+      }
+
+      .poppins-extralight-italic {
+        font-family: "Poppins", sans-serif;
+        font-weight: 200;
+        font-style: italic;
+      }
+
+      .poppins-light-italic {
+        font-family: "Poppins", sans-serif;
+        font-weight: 300;
+        font-style: italic;
+      }
+
+      .poppins-regular-italic {
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+        font-style: italic;
+      }
+
+      .poppins-medium-italic {
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        font-style: italic;
+      }
+
+      .poppins-semibold-italic {
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        font-style: italic;
+      }
+
+      .poppins-bold-italic {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-style: italic;
+      }
+
+      .poppins-extrabold-italic {
+        font-family: "Poppins", sans-serif;
+        font-weight: 800;
+        font-style: italic;
+      }
+
+      .poppins-black-italic {
+        font-family: "Poppins", sans-serif;
+        font-weight: 900;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Chá de Bebê</h2>
+      <h1>Olívia</h1>
+      <p>Sábado, 05 de julho</p>
+
+      <img src="coelhinho-balao.png" alt="Balão com Coelhinho Fofo" />
+
+      <p>Estamos ansiosos para celebrar<br />nossa menina junto com você!</p>
+
+      <div class="info poppins-extralight">
+        <span>
+          <span class="material-symbols-outlined"> home_pin </span> Av. Madre
+          Leonia Milito, 1130 - Apt. 804
+        </span>
+        <span>
+          <span class="material-symbols-outlined"> event </span>
+          Sábado, 05 de julho
+        </span>
+        <span>
+          <span class="material-symbols-outlined"> schedule </span>
+          15:00
+        </span>
+      </div>
+
+      <a
+        class="button poppins-extralight"
+        href="https://www.sualistadepresentes.com/olivia"
+        target="_blank"
+      >
+        Lista de Presentes
+      </a>
+
+      <div class="footer poppins-medium">Te aguardamos aqui!</div>
+    </div>
+  </body>
+</html>
