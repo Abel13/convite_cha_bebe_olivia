@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect } from "react";
 import { Parallax } from "react-scroll-parallax";
 
@@ -20,21 +21,21 @@ export default function Home() {
     <main className="relative max-w-md mx-auto p-5 bg-[var(--color-background)] text-[color:var(--foreground)] text-center font-[var(--font-sans)] min-h-screen overflow-hidden">
       {/* Camada Parallax */}
       <Parallax
-        speed={-80}
+        speed={-20}
         className="absolute -top-20 left-5 -z-10 opacity-80"
       >
         <Image src="/nuvem1.png" alt="Nuvem 1" width={120} height={60} />
       </Parallax>
 
       <Parallax
-        speed={-80}
+        speed={-25}
         className="absolute -top-40 right-0 -z-60 opacity-80"
       >
         <Image src="/nuvem2.png" alt="Nuvem 2" width={150} height={70} />
       </Parallax>
 
       <Parallax
-        speed={-15}
+        speed={-10}
         className="absolute top-30 left-1/2 -translate-x-1/2 -z-30"
       >
         <Image
@@ -80,17 +81,23 @@ export default function Home() {
         </div>
         <div className="flex items-center gap-3">
           <span className="material-symbols-outlined">schedule</span>
-          15:00
+          15:00h
         </div>
+
+        <Link
+          href="/confirm"
+          className="block bg-[var(--color-button-bg)] text-white rounded-full px-6 py-4 font-light text-center"
+        >
+          Confirmar Presença
+        </Link>
       </div>
 
-      <a
-        href="https://www.sualistadepresentes.com/olivia"
-        target="_blank"
-        className="block bg-[var(--color-button-bg)] text-[color:var(--foreground)] rounded-full px-6 py-4 mt-6 font-light"
+      <Link
+        href="/gifts"
+        className="block bg-[var(--color-button-bg)] text-white rounded-full px-6 py-4 mt-6 font-light"
       >
         Lista de Presentes
-      </a>
+      </Link>
 
       <div className="text-[color:var(--color-footer)] text-base mt-8 font-medium">
         Te aguardamos aqui!

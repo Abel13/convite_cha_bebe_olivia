@@ -3,7 +3,9 @@ import { Geist } from "next/font/google";
 import { Poppins, Playfair_Display } from "next/font/google";
 import { Great_Vibes } from "next/font/google";
 import "./globals.css";
-import { ParallaxWrapper } from "./components/ParallaxWrapper";
+import { ParallaxWrapper } from "../components/ParallaxWrapper";
+import { PageTransition } from "../components/PageTransition";
+import { Toaster } from "react-hot-toast";
 
 // Fontes do sistema (Geist)
 const geistSans = Geist({
@@ -51,7 +53,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${poppins.variable} ${playfair.variable} ${greatVibes.variable} antialiased`}
       >
-        <ParallaxWrapper>{children}</ParallaxWrapper>
+        <Toaster position="top-center" />
+        <ParallaxWrapper>
+          <PageTransition>{children}</PageTransition>
+        </ParallaxWrapper>
       </body>
     </html>
   );
