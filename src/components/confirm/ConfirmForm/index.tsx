@@ -16,12 +16,6 @@ export interface ConfirmFormData {
   children: number;
 }
 
-export const metadata = {
-  title: "Confirmar Presença – Chá da Olívia",
-  description:
-    "Confirme sua presença e informe quantos adultos e crianças virão.",
-};
-
 export function ConfirmForm() {
   const [submitted, setSubmitted] = useState(false);
 
@@ -58,9 +52,13 @@ export function ConfirmForm() {
 
   if (submitted) {
     return (
-      <p className="text-green-700 text-lg text-center">
-        Presença confirmada! 💖
-      </p>
+      <div className="bg-[var(--color-info-bg)] border border-[var(--color-border)] text-[var(--color-title)] rounded-xl p-6 text-center shadow-md fade-in">
+        <div className="text-4xl mb-2">💖</div>
+        <h2 className="text-xl font-semibold mb-1">Presença confirmada!</h2>
+        <p className="text-sm text-[var(--foreground)]">
+          Obrigada por confirmar. Estamos muito felizes com a sua presença! 🍼🎀
+        </p>
+      </div>
     );
   }
 
@@ -75,7 +73,6 @@ export function ConfirmForm() {
         error={errors.name}
         {...register("name")}
       />
-
       <InputField
         label="Seu contato"
         placeholder="WhatsApp ou email"
@@ -83,11 +80,12 @@ export function ConfirmForm() {
         {...register("contact")}
       />
 
-      <div className="flex flex-col sm:flex-row gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-end">
         <NumberField
           label="Quantos Adultos (incluindo você)"
           placeholder="1"
           error={errors.adults}
+          className="flex-1"
           {...register("adults")}
         />
 
@@ -95,10 +93,10 @@ export function ConfirmForm() {
           label="Quantas Crianças"
           placeholder="0"
           error={errors.children}
+          className="flex-1"
           {...register("children")}
         />
       </div>
-
       <Button type="submit" className="w-full">
         Confirmar Presença
       </Button>

@@ -1,6 +1,5 @@
 "use client";
-
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const gifts = [
   { id: 0, name: "Pix", price: "Valor livre", image: "/gifts/pix.png" },
@@ -27,16 +26,9 @@ export default function GiftsPage() {
     setSelected(id);
   };
 
-  useEffect(() => {
-    const timeout = setTimeout(() => setMounted(true), 100);
-    return () => clearTimeout(timeout);
-  }, []);
-
   return (
     <main
-      className={`max-w-md mx-auto p-5 bg-[var(--background)] text-[color:var(--foreground)] font-[var(--font-sans)] min-h-screen transition-opacity duration-700 ${
-        mounted ? "opacity-100" : "opacity-0"
-      }`}
+      className={`max-w-md mx-auto p-5 bg-[var(--background)] text-[color:var(--foreground)] font-[var(--font-sans)] min-h-screen transition-opacity duration-700`}
     >
       <h1 className="text-2xl text-center mb-6 text-[color:var(--color-title)] font-[var(--font-title)]">
         Escolha seu presente para a Olívia

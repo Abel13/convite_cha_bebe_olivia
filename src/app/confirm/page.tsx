@@ -1,21 +1,16 @@
-"use client";
 // app/confirm/page.tsx
 import { ConfirmForm } from "@/components/confirm/ConfirmForm";
-import { useEffect, useState } from "react";
+
+export const metadata = {
+  title: "Confirmar Presença – Chá da Olívia",
+  description:
+    "Confirme sua presença e informe quantos adultos e crianças virão.",
+};
 
 export default function ConfirmPage() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => setMounted(true), 100);
-    return () => clearTimeout(timeout);
-  }, []);
-
   return (
     <main
-      className={`max-w-md mx-auto p-5 bg-[var(--background)] text-[color:var(--foreground)] font-[var(--font-sans)] min-h-screen transition-opacity duration-700 ${
-        mounted ? "opacity-100" : "opacity-0"
-      }`}
+      className={`mx-auto px-4 sm:px-6 md:px-8 py-8 bg-[var(--background)] text-[color:var(--foreground)] font-[var(--font-sans)] min-h-screen transition-opacity duration-700 max-w-md sm:max-w-lg md:max-w-xl`}
     >
       <h1 className="text-2xl text-[color:var(--color-title)] font-[var(--font-title)] mb-4">
         Confirmação de Presença

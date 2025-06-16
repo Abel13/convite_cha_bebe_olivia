@@ -54,7 +54,6 @@ export default function Home() {
       >
         Chá de Bebê
       </h2>
-
       <h1
         className="text-4xl text-[var(--color-title)]"
         style={{ fontFamily: "var(--font-title)" }}
@@ -70,7 +69,7 @@ export default function Home() {
         nossa menina junto com você!
       </p>
 
-      <div className="bg-[var(--color-info-bg)] rounded-xl p-4 mt-5 flex flex-col gap-3 text-left text-sm font-extralight">
+      <div className="bg-[var(--color-info-bg)]  rounded-xl p-4 mt-5 flex flex-col gap-3 text-left text-sm font-extralight shadow-md fade-in">
         <div className="flex items-center gap-3">
           <span className="material-symbols-outlined">home_pin</span>
           Av. Madre Leonia Milito, 1130 - Apt. 804

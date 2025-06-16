@@ -7,6 +7,7 @@
   --color-title: #a27b78;
   --color-subtitle: #bf918c;
   --color-info-bg: #fae4da;
+  --color-border: #f5bca2;
   --color-button-bg: #e56552;
   --color-footer: #804444;
 
@@ -56,4 +57,17 @@ body {
 }
 .parallax-fast {
   transform: translateY(calc(var(--scroll-y, 0px) * 0.3));
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
 }
