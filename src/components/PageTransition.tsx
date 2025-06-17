@@ -13,7 +13,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -30 }}
         transition={{ duration: 0.3 }}
-        style={{ willChange: "transform, opacity" }} // ajuda a evitar flicker
+        style={{ willChange: "transform, opacity" }}
       >
         {children}
       </motion.div>

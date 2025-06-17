@@ -3,11 +3,11 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import { InputField } from "@/components/atoms/InputField";
-import { NumberField } from "@/components/atoms/NumberField";
 import { Button } from "@/components/atoms/Button";
 import { toast } from "react-hot-toast";
 import { confirmSchema } from "@/schemas/confirm.schema";
+import { InputField } from "@/components/atoms/InputField";
+import { NumberField } from "@/components/atoms/NumberField";
 
 export interface ConfirmFormData {
   name: string;
@@ -20,6 +20,7 @@ export function ConfirmForm() {
   const [submitted, setSubmitted] = useState(false);
 
   const {
+    control,
     register,
     handleSubmit,
     formState: { errors },
@@ -69,32 +70,36 @@ export function ConfirmForm() {
     >
       <InputField
         label="Seu nome"
+        control={control}
         placeholder="Digite seu nome"
         error={errors.name}
-        {...register("name")}
+        name={"name"}
       />
       <InputField
         label="Seu contato"
+        control={control}
         placeholder="WhatsApp ou email"
         error={errors.contact}
-        {...register("contact")}
+        name={"contact"}
       />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-end">
         <NumberField
+          control={control}
           label="Quantos Adultos (incluindo você)"
           placeholder="1"
+          min={1}
           error={errors.adults}
-          className="flex-1"
-          {...register("adults")}
+          name={"adults"}
         />
 
         <NumberField
+          control={control}
           label="Quantas Crianças"
           placeholder="0"
+          min={0}
           error={errors.children}
-          className="flex-1"
-          {...register("children")}
+          name={"children"}
         />
       </div>
       <Button type="submit" className="w-full">

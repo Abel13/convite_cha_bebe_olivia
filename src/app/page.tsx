@@ -19,7 +19,6 @@ export default function Home() {
 
   return (
     <main className="relative max-w-md mx-auto p-5 bg-[var(--color-background)] text-[color:var(--foreground)] text-center font-[var(--font-sans)] min-h-screen overflow-hidden">
-      {/* Camada Parallax */}
       <Parallax
         speed={-20}
         className="absolute -top-20 left-5 -z-10 opacity-80"
