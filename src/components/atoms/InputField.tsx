@@ -69,7 +69,7 @@ export const InputField: React.FC<InputProps> = ({
           onChange={handleChange}
           autoCapitalize={autoCapitalize}
           disabled={disabled}
-          className="flex-1 bg-transparent outline-none text-sm w-full"
+          className="flex-1 bg-transparent outline-none text-base w-full"
         />
       </div>
       {error && (
