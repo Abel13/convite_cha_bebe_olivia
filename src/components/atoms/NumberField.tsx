@@ -40,9 +40,8 @@ export const NumberField: React.FC<NumberFieldProps> = ({
   const handleNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
     const digitsOnly = e.target.value.replace(/[^\d-]/g, "");
     const parsed = digitsOnly === "" ? "" : Number(digitsOnly);
-    if (!isNaN(parsed)) {
-      onChange(parsed);
-    }
+
+    onChange(parsed);
   };
 
   const increment = () => {
