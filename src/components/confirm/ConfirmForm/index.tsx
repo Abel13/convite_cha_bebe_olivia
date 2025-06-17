@@ -21,7 +21,6 @@ export function ConfirmForm() {
 
   const {
     control,
-    register,
     handleSubmit,
     formState: { errors },
   } = useForm<ConfirmFormData>({
