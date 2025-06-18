@@ -104,7 +104,7 @@ export default function GiftsPage() {
       </section>
 
       {/* Footer fixo */}
-      <div className="w-full bg-[var(--color-info-bg)] border-t sm:border sm:border-b-0 border-[var(--color-border)] shadow-[0_-2px_10px_rgba(0,0,0,0.1)] px-4 py-3 z-10">
+      <div className="mt-auto w-full bg-[var(--color-info-bg)] border-t sm:border sm:border-b-0 border-[var(--color-border)] shadow-[0_-2px_10px_rgba(0,0,0,0.1)] px-4 py-3 z-10">
         <div className="max-w-2xl mx-auto flex items-center justify-between">
           <span className="text-sm">
             {selected.length > 0
