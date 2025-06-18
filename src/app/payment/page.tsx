@@ -110,7 +110,7 @@ export default function PaymentPage() {
               onClick={copy}
               className="w-full bg-[var(--color-button-bg)] text-white rounded-full py-3 text-sm"
             >
-              Copiar código Pix
+              Pix copia e cola
             </button>
           </>
         ) : (

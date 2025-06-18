@@ -23,14 +23,26 @@ export default function Home() {
         speed={-20}
         className="absolute -top-20 left-5 -z-10 opacity-80"
       >
-        <Image src="/nuvem1.png" alt="Nuvem 1" width={120} height={60} />
+        <Image
+          src="/nuvem1.png"
+          alt="Nuvem 1"
+          className="w-auto"
+          width={120}
+          height={60}
+        />
       </Parallax>
 
       <Parallax
         speed={-25}
         className="absolute -top-40 right-0 -z-60 opacity-80"
       >
-        <Image src="/nuvem2.png" alt="Nuvem 2" width={150} height={70} />
+        <Image
+          className="w-auto"
+          src="/nuvem2.png"
+          alt="Nuvem 2"
+          width={130}
+          height={70}
+        />
       </Parallax>
 
       <Parallax
@@ -40,6 +52,7 @@ export default function Home() {
         <Image
           src="/coelhinho-balao.png"
           alt="Balão"
+          className="w-auto"
           width={180}
           height={180}
           priority

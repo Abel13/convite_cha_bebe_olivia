@@ -25,7 +25,7 @@ const gifts = [
     image: "/gifts/fraldas160.jpeg",
   },
   { id: 7, name: "Kit presente", value: 50, image: "/gifts/presente.jpeg" },
-  { id: 8, name: "Manta", value: 60, image: "/gifts/manta.avif" },
+  { id: 8, name: "Manta", value: 60, image: "/gifts/manta.webp" },
   { id: 9, name: "Kit higiene", value: 75, image: "/gifts/higiene.jpeg" },
   { id: 10, name: "Kit body", value: 100, image: "/gifts/body.jpeg" },
   { id: 11, name: "Banheira", value: 220, image: "/gifts/banheira.jpeg" },
@@ -57,18 +57,18 @@ export default function GiftsPage() {
             alt="Coelhinho flutuando"
             width={50}
             height={50}
-            className="absolute animate-float -mx-8 -my-3"
+            className="w-auto absolute animate-float -mx-8 -my-3"
           />
           Lista de Presentes
         </h1>
       </header>
 
+      <span className="flex text-center text-sm sm:text-lg py-2">
+        Sua presença é o maior presente, mas se quiser, fique à vontade para
+        presentear nossa Olívia! 🥰
+      </span>
       {/* Scrollable list */}
-      <section className="flex-1 overflow-y-auto px-4 pb-4 mb-15">
-        <span className="flex py-2 text-center text-sm sm:text-lg">
-          Sua presença é o maior presente, mas se quiser, fique à vontade para
-          presentear nossa Olívia! 🥰
-        </span>
+      <section className="flex-1 overflow-y-auto px-4 pb-4 pt-2">
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
           {gifts.map((gift) => {
             const isSelected = selected.includes(gift);
@@ -104,7 +104,7 @@ export default function GiftsPage() {
       </section>
 
       {/* Footer fixo */}
-      <div className="fixed bottom-0 left-0 w-full bg-[var(--color-info-bg)] border-t border-[var(--color-border)] shadow-[0_-2px_10px_rgba(0,0,0,0.1)] px-4 py-3 z-10">
+      <div className="fixed bottom-0 left-0 right-0 bg-[var(--color-info-bg)] border-t border-[var(--color-border)] shadow-[0_-2px_10px_rgba(0,0,0,0.1)] px-4 py-3 z-10">
         <div className="max-w-2xl mx-auto flex items-center justify-between">
           <span className="text-sm">
             {selected.length > 0

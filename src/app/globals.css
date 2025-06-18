@@ -20,6 +20,9 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+
+  scrollbar-width: thin;
+  scrollbar-color: #f5bca2 #fae4da;
 }
 
 .material-symbols-outlined {
@@ -83,4 +86,25 @@ body {
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fef8f2; /* tom rosado pastel */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(145deg, #f5bca2, #fae4da);
+  border-radius: 10px;
+  border: 2px solid #fef8f2;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(145deg, #f5bca2, #fae4da);
 }
