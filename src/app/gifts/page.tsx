@@ -103,9 +103,8 @@ export default function GiftsPage() {
         </div>
       </section>
 
-      {/* Footer fixo */}
-      <div className="mt-auto w-full bg-[var(--color-info-bg)] border-t sm:border sm:border-b-0 border-[var(--color-border)] shadow-[0_-2px_10px_rgba(0,0,0,0.1)] px-4 py-3 z-10">
-        <div className="max-w-2xl mx-auto flex items-center justify-between">
+      <div className="fixed inset-x-0 bottom-0 pb-safe bg-[var(--color-info-bg)] border-t sm:border sm:border-b-0 border-[var(--color-border)] shadow-[0_-2px_10px_rgba(0,0,0,0.1)] px-4 py-3 z-10">
+        <div className="max-w-2xl mx-auto flex items-center justify-between pb-2">
           <span className="text-sm">
             {selected.length > 0
               ? `${selected.length} presente(s) selecionado(s) — Total: ${

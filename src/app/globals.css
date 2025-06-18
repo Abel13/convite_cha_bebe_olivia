@@ -88,6 +88,10 @@ body {
   animation: float 3s ease-in-out infinite;
 }
 
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
