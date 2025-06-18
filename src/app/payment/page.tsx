@@ -90,7 +90,10 @@ export default function PaymentPage() {
           Total:{" "}
           <strong>
             {totalToShow > 0
-              ? convertNumberToPtBrString({ value: totalToShow })
+              ? convertNumberToPtBrString({
+                  value: totalToShow,
+                  type: "currency",
+                })
               : "Valor livre"}
           </strong>
         </div>

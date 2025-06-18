@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { convertNumberToPtBrString } from "@/utils/currency";
 import { useGiftStore } from "@/store/giftStore";
+import { useEffect, useMemo, useState } from "react";
 
 const gifts = [
   { id: 0, name: "Pix Livre", value: 0, image: "/gifts/pix.png" },
@@ -43,6 +44,16 @@ export default function GiftsPage() {
 
   const selectedGifts = gifts.filter((g) => selected.includes(g));
   const totalValue = selectedGifts.reduce((sum, g) => sum + g.value, 0);
+  const [pulse, setPulse] = useState(false);
+
+  useEffect(() => {
+    if (selected.length === 0) return;
+
+    setPulse(true);
+    const timeout = setTimeout(() => setPulse(false), 400);
+
+    return () => clearTimeout(timeout);
+  }, [selected]);
 
   return (
     <main className="relative flex flex-col h-screen max-w-2xl mx-auto bg-[var(--background)] text-[var(--foreground)] font-[var(--font-sans)] animate-fade-in">
@@ -68,18 +79,20 @@ export default function GiftsPage() {
         presentear nossa Olívia! 🥰
       </span>
       {/* Scrollable list */}
-      <section className="flex-1 overflow-y-auto px-4 pb-4 pt-2">
+      <section className="flex-1 overflow-y-auto px-4 pb-32 pt-2">
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
           {gifts.map((gift) => {
             const isSelected = selected.includes(gift);
             return (
               <button
                 key={gift.id}
-                onClick={() => {
-                  toggle(gift);
-                }}
+                onClick={() => toggle(gift)}
                 className={`rounded-xl p-4 flex bg-white flex-col items-center shadow-md transition border border-[var(--color-border)]
-                  ${isSelected ? "ring-2 bg-[var(--color-info-bg)]" : "ring-0"}
+                  ${
+                    isSelected
+                      ? "animate-pop-once ring-2 bg-[var(--color-info-bg)]"
+                      : ""
+                  }
                   hover:brightness-105`}
               >
                 <Image
@@ -94,7 +107,10 @@ export default function GiftsPage() {
                 </span>
                 {gift.value > 0 && (
                   <span className="text-xs text-[var(--foreground)] mt-1">
-                    {convertNumberToPtBrString({ value: gift.value })}
+                    {convertNumberToPtBrString({
+                      value: gift.value,
+                      type: "currency",
+                    })}
                   </span>
                 )}
               </button>
@@ -103,16 +119,28 @@ export default function GiftsPage() {
         </div>
       </section>
 
-      <div className="fixed inset-x-0 bottom-0 pb-safe bg-[var(--color-info-bg)] border-t sm:border sm:border-b-0 border-[var(--color-border)] shadow-[0_-2px_10px_rgba(0,0,0,0.1)] px-4 py-3 z-10">
-        <div className="max-w-2xl mx-auto flex items-center justify-between pb-2">
-          <span className="text-sm">
+      {/* Footer fixo */}
+      <div
+        className={`absolute bottom-10 left-2 right-2 rounded-full bg-[var(--color-info-bg)] border border-[var(--color-border)] shadow-[0_-2px_10px_rgba(0,0,0,0.1)] px-4 py-3 z-50 ${
+          pulse ? "animate-pulse-once" : ""
+        }`}
+      >
+        <div className="max-w-2xl mx-auto flex items-center justify-between gap-2">
+          <span className="text-xs sm:text-sm">
             {selected.length > 0
-              ? `${selected.length} presente(s) selecionado(s) — Total: ${
-                  totalValue === 0
-                    ? "Valor Livre"
-                    : convertNumberToPtBrString({ value: totalValue })
-                }`
+              ? `${selected.length} presente(s) selecionado(s)`
               : "Selecione um ou mais presentes"}
+          </span>
+
+          <span className="text-xs sm:text-sm">
+            {`Total: ${
+              totalValue === 0
+                ? "Valor Livre"
+                : convertNumberToPtBrString({
+                    value: totalValue,
+                    type: "currency",
+                  })
+            }`}
           </span>
 
           <Link
