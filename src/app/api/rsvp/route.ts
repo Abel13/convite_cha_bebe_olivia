@@ -1,9 +1,10 @@
 // app/api/rsvp/route.ts
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase/server";
 
 export async function POST(req: Request) {
   const data = await req.json();
+  const supabase = await createClient();
 
   const { name, contact, adults, children } = data;
 

@@ -95,24 +95,39 @@ export default function Home() {
           15:00h
         </div>
 
+        {false && (
+          <Link
+            href="/confirm"
+            className="block bg-[var(--color-button-bg)] text-white rounded-full px-6 py-4 font-light text-center"
+          >
+            Confirmar Presença
+          </Link>
+        )}
+
+        {true && (
+          <Link
+            href="/album"
+            className="block bg-[var(--color-button-bg)] text-white rounded-full px-6 py-4 font-light text-center"
+          >
+            Album de Fotos
+          </Link>
+        )}
+      </div>
+
+      {false && (
         <Link
-          href="/confirm"
-          className="block bg-[var(--color-button-bg)] text-white rounded-full px-6 py-4 font-light text-center"
+          href="/gifts"
+          className="block bg-[var(--color-button-bg)] text-white rounded-full px-6 py-4 mt-6 font-light"
         >
-          Confirmar Presença
+          Lista de Presentes
         </Link>
-      </div>
+      )}
 
-      <Link
-        href="/gifts"
-        className="block bg-[var(--color-button-bg)] text-white rounded-full px-6 py-4 mt-6 font-light"
-      >
-        Lista de Presentes
-      </Link>
-
-      <div className="text-[color:var(--color-footer)] text-base mt-8 font-medium">
-        Te aguardamos aqui!
-      </div>
+      {false && (
+        <div className="text-[color:var(--color-footer)] text-base mt-8 font-medium">
+          Te aguardamos aqui!
+        </div>
+      )}
     </main>
   );
 }
