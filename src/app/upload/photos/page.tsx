@@ -1,13 +1,17 @@
 "use client";
 
+import { ModalCode } from "@/components/templates/ModalCode";
+import { useGuestStore } from "@/store/guestStore";
 import Image from "next/image";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 
 export default function UploadPhotosPage() {
   const [files, setFiles] = useState<File[]>([]);
   const [captions, setCaptions] = useState<string[]>([]);
   const [sending, setSending] = useState(false);
+  const { guest } = useGuestStore((store) => store);
 
+  console.log(guest);
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
     const selected = Array.from(e.target.files);
@@ -16,28 +20,38 @@ export default function UploadPhotosPage() {
   };
 
   const handleUpload = async () => {
-    // if (!guestId || !partyId) return alert("Link inválido.");
-    // setSending(true);
-    // const form = new FormData();
-    // form.append("guestId", guestId);
-    // form.append("partyId", partyId);
-    // files.forEach((file, i) => {
-    //   form.append("files", file);
-    //   form.append(`caption-${i}`, captions[i] || "");
-    // });
-    // const res = await fetch("/api/upload-photos", {
-    //   method: "POST",
-    //   body: form,
-    // });
-    // setSending(false);
-    // if (res.ok) {
-    //   alert("Fotos enviadas com sucesso!");
-    //   setFiles([]);
-    //   setCaptions([]);
-    // } else {
-    //   alert("Erro ao enviar. Tente novamente.");
-    // }
+    if (!guest) return alert("Link inválido.");
+
+    setSending(true);
+    const form = new FormData();
+    form.append("guestId", guest.guestId);
+    form.append("partyId", guest.partyId);
+    files.forEach((file, i) => {
+      form.append("files", file);
+      form.append(`caption-${i}`, captions[i] || "");
+    });
+    const res = await fetch("/api/upload-photos", {
+      method: "POST",
+      body: form,
+    });
+    setSending(false);
+    if (res.ok) {
+      alert("Fotos enviadas com sucesso!");
+      setFiles([]);
+      setCaptions([]);
+    } else {
+      alert("Erro ao enviar. Tente novamente.");
+    }
   };
+
+  if (!guest)
+    return (
+      <Suspense fallback={null}>
+        <div className="flex justify-center">
+          <ModalCode startVisible />
+        </div>
+      </Suspense>
+    );
 
   return (
     <div className="p-6 max-w-4xl mx-auto">

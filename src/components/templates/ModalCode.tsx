@@ -1,12 +1,17 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../atoms/Button";
 import { useGuestStore } from "@/store/guestStore";
 import { useRouter, useSearchParams } from "next/navigation";
+import { FiXCircle } from "react-icons/fi";
 
-export const ModalCode = () => {
+export const ModalCode = ({
+  startVisible = false,
+}: {
+  startVisible?: boolean;
+}) => {
   const { setGuest } = useGuestStore((store) => store);
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(startVisible);
   const [code, setCode] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -27,10 +32,11 @@ export const ModalCode = () => {
       return;
     }
 
-    const { guestId } = await res.json();
+    const { guestId, partyId } = await res.json();
     setGuest({
       code: codeToValidate,
       guestId,
+      partyId,
     });
     setVisible(false);
     setLoading(false);
@@ -45,6 +51,12 @@ export const ModalCode = () => {
     validateCode(code);
   };
 
+  useEffect(() => {
+    if (code !== "") {
+      validateCode(code);
+    }
+  }, [code]);
+
   return (
     <div className="flex">
       <Button
@@ -56,9 +68,14 @@ export const ModalCode = () => {
 
       {visible && (
         <div className="flex flex-col top-0 left-0 right-0 p-6 max-w-xl mx-auto absolute bg-[var(--color-info-bg)] z-50 rounded-b-3xl">
-          <h1 className="text-2xl text-[#a27b78] font-bold mb-4">
-            Digite seu código de convidado
-          </h1>
+          <div className="flex justify-between items-start">
+            <h1 className="text-2xl text-[#a27b78] font-bold mb-4">
+              Digite seu código de convidado
+            </h1>
+            <button onClick={() => setVisible(false)}>
+              <FiXCircle size={30} />
+            </button>
+          </div>
 
           <input
             disabled={loading}

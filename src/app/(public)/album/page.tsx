@@ -40,14 +40,14 @@ export default async function AlbumPage(props: Props) {
     );
 
   return (
-    <div className="min-h-screen px-4 py-10 bg-[--color-info-bg]">
+    <div className="min-h-screen px-4 py-10 bg-[--color-info-bg] items-center">
       <h1 className="text-3xl font-bold text-[--color-title] text-center mb-6">
         Nosso álbum de memórias
       </h1>
 
       <div className="flex justify-center mb-6">
         {code ? (
-          <a href={`/upload?code=${code}`}>
+          <a href={`/upload/photos`}>
             <Button className="bg-[--color-button-bg] text-white hover:opacity-90">
               {"Enviar suas fotos ✨"}
             </Button>
@@ -62,7 +62,7 @@ export default async function AlbumPage(props: Props) {
           (photo: PhotosByCode, index: number) => (
             <PolaroidCard
               key={index}
-              imageUrl={photo.image_url}
+              path={photo.image_url}
               caption={photo.message}
               index={index}
             />

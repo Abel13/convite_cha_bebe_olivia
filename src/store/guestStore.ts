@@ -1,21 +1,27 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-interface Guest {
+type Guest = {
   code: string;
   guestId: string;
-}
+  partyId: string;
+};
 
-interface GuestState {
-  guest: Guest | null;
+type GuestStore = {
+  guest?: Guest;
   setGuest: (guest: Guest) => void;
-  clear: () => void;
-}
+  clearGuest: () => void;
+};
 
-export const useGuestStore = create<GuestState>((set) => ({
-  guest: null,
-  setGuest: (guest) =>
-    set({
-      guest,
+export const useGuestStore = create<GuestStore>()(
+  persist(
+    (set) => ({
+      guest: undefined,
+      setGuest: (guest) => set({ guest }),
+      clearGuest: () => set({ guest: undefined }),
     }),
-  clear: () => set({ guest: null }),
-}));
+    {
+      name: "guest-storage",
+    }
+  )
+);

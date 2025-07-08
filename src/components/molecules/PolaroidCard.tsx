@@ -1,16 +1,22 @@
+import { createClient } from "@/lib/supabase/server";
 import Image from "next/image";
 
 interface PolaroidCardProps {
-  imageUrl: string;
+  path: string;
   caption: string;
   index?: number;
 }
 
-export function PolaroidCard({
-  imageUrl,
+export async function PolaroidCard({
+  path,
   caption,
   index = 0,
 }: PolaroidCardProps) {
+  const supabase = await createClient();
+  const { data: imageUrl, error } = await supabase.storage
+    .from("party")
+    .createSignedUrl(path, 360);
+
   const rotation = [
     "rotate-[5deg]",
     "-rotate-[5deg]",
@@ -37,13 +43,15 @@ export function PolaroidCard({
           index % 2 === 0 ? "right-3" : "left-3"
         } after:${shadowClass} after:transition-all after:duration-300 hover:after:rotate-0 hover:after:h-[90%] hover:after:w-[90%] hover:after:bottom-0 hover:after:right-[5%]`}
       >
-        <img
-          src={imageUrl}
-          alt={caption}
-          className="w-full h-auto object-cover"
-          width={500}
-          height={500}
-        />
+        {imageUrl && (
+          <img
+            src={imageUrl.signedUrl}
+            alt={caption}
+            className="w-full h-auto object-cover"
+            width={500}
+            height={500}
+          />
+        )}
 
         <div
           className="text-xl mt-2 text-left"
