@@ -18,7 +18,7 @@ export default async function AlbumPage(props: Props) {
         await supabase
           .from("guests")
           .select("id, party_id")
-          .eq("code", code)
+          .eq("code", code as string)
           .maybeSingle()
       ).data
     : null;
@@ -27,7 +27,7 @@ export default async function AlbumPage(props: Props) {
 
   const { data: photos } = await supabase.rpc("get_photos_by_code", {
     party_id: partyId,
-    guest_code: code || null,
+    guest_code: code as string,
   });
 
   if (!photos)
