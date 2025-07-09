@@ -27,7 +27,7 @@ export default async function AlbumPage(props: Props) {
 
   const { data: photos, error } = await supabase.rpc("get_photos", {
     input_party_id: partyId,
-    input_guest_code: code as string,
+    input_guest_code: (code as string) || "public",
   });
 
   console.log(photos, error);

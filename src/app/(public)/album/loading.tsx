@@ -13,7 +13,7 @@ export default function Loading() {
             alt="Coelhinho flutuando"
             width={50}
             height={50}
-            className="w-auto absolute animate-float -mx-8 -my-3"
+            className="w-auto absolute animate-float -mx-10 -my-3"
           />
           Carregando...
         </h1>
