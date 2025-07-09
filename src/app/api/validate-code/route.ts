@@ -11,12 +11,11 @@ export async function POST(req: Request) {
     input_code: code,
   });
 
-  const guest = response[0];
-
-  if (error || !guest) {
-    console.log(error);
+  if (error || !response[0]) {
     return NextResponse.json({ error: "Invalid code" }, { status: 401 });
   }
+
+  const guest = response[0];
 
   return NextResponse.json({ guestId: guest.id, partyId: guest.party_id });
 }
