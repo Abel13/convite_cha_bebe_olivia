@@ -95,21 +95,19 @@ export default function Home() {
           15:00h
         </div>
 
-        <div className="flex justify-between">
-          <Link
-            href="/confirm"
-            className="flex w-fit bg-[var(--color-button-bg)] text-white rounded-full px-6 py-4 font-light text-center"
-          >
-            Confirmar Presença
-          </Link>
+        <Link
+          href="/confirm"
+          className="flex bg-[var(--color-button-bg)] text-white rounded-full px-6 py-4 font-light text-center justify-center"
+        >
+          Confirmar Presença
+        </Link>
 
-          <Link
-            href="/album"
-            className="flex w-fit bg-[var(--color-button-bg)] text-white rounded-full px-6 py-4 font-light text-center"
-          >
-            Album de Fotos
-          </Link>
-        </div>
+        <Link
+          href="/album"
+          className="flex bg-[var(--color-button-bg)] text-white rounded-full px-6 py-4 font-light text-center justify-center"
+        >
+          Album de Fotos
+        </Link>
       </div>
 
       <Link
