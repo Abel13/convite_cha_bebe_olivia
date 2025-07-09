@@ -25,10 +25,12 @@ export default async function AlbumPage(props: Props) {
 
   const partyId = guest?.party_id || process.env.NEXT_PUBLIC_PARTY_ID!;
 
-  const { data: photos } = await supabase.rpc("get_photos_by_code", {
-    party_id: partyId,
-    guest_code: code as string,
+  const { data: photos, error } = await supabase.rpc("get_photos", {
+    input_party_id: partyId,
+    input_guest_code: code as string,
   });
+
+  console.log(photos, error);
 
   if (!photos)
     return (
@@ -40,7 +42,7 @@ export default async function AlbumPage(props: Props) {
     );
 
   return (
-    <div className="min-h-screen px-4 py-10 bg-[--color-info-bg] items-center">
+    <div className="relative max-w-fit mx-auto p-5 bg-[var(--color-background)] text-[color:var(--foreground)] text-center font-[var(--font-sans)] min-h-screen overflow-hidden">
       <h1 className="text-3xl font-bold text-[--color-title] text-center mb-6">
         Nosso álbum de memórias
       </h1>
@@ -57,13 +59,14 @@ export default async function AlbumPage(props: Props) {
         )}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {(photos as PhotosByCode[]).map(
           (photo: PhotosByCode, index: number) => (
             <PolaroidCard
               key={index}
-              path={photo.image_url}
-              caption={photo.message}
+              path={photo.path}
+              caption={photo.caption}
+              autor={photo.author}
               index={index}
             />
           )

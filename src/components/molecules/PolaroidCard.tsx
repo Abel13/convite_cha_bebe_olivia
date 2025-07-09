@@ -4,12 +4,14 @@ import Image from "next/image";
 interface PolaroidCardProps {
   path: string;
   caption: string;
+  autor: string;
   index?: number;
 }
 
 export async function PolaroidCard({
   path,
   caption,
+  autor = "no-name",
   index = 0,
 }: PolaroidCardProps) {
   const supabase = await createClient();
@@ -36,7 +38,7 @@ export async function PolaroidCard({
 
   return (
     <div
-      className={`relative inline-block w-60 md:w-96 m-4 md:grayscale hover:grayscale-0 transition-all duration-300 transform hover:scale-105 ${rotationClass} hover:rotate-0`}
+      className={`relative inline-block w-60 md:w-96 m-4 md:grayscale hover:grayscale-0 transition-all duration-300 transform hover:scale-105 ${rotationClass} hover:rotate-0 max-w-`}
     >
       <div
         className={`bg-white p-4 shadow-lg relative after:content-[''] after:absolute after:h-[20%] after:w-[47%] after:bottom-[30px] after:-z-10 after:${
@@ -44,7 +46,7 @@ export async function PolaroidCard({
         } after:${shadowClass} after:transition-all after:duration-300 hover:after:rotate-0 hover:after:h-[90%] hover:after:w-[90%] hover:after:bottom-0 hover:after:right-[5%]`}
       >
         {imageUrl && (
-          <img
+          <Image
             src={imageUrl.signedUrl}
             alt={caption}
             className="w-full h-auto object-cover"
@@ -52,7 +54,7 @@ export async function PolaroidCard({
             height={500}
           />
         )}
-
+        <div className="text-xs mt-2 text-left text-blue-400">@{autor}</div>
         <div
           className="text-xl mt-2 text-left"
           style={{ fontFamily: "var(--font-subtitle)" }}
