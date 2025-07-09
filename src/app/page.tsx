@@ -128,6 +128,24 @@ export default function Home() {
           Te aguardamos aqui!
         </div>
       )}
+
+      {/* Banner para contratar site personalizado */}
+      <div className="bg-[var(--color-highlight)] text-white mt-10 rounded-xl p-6 shadow-lg text-left fade-in">
+        <h2 className="text-xl font-semibold mb-2">
+          ✨ Quer uma página como esta para seu evento?
+        </h2>
+        <p className="text-sm mb-4">
+          Posso criar um convite digital para o seu chá de bebê, aniversário,
+          casamento ou o que você imaginar!
+        </p>
+        <Link
+          href="https://wa.me/5543984933304?text=Oi%2C%20vi%20a%20p%C3%A1gina%20do%20Ch%C3%A1%20da%20Ol%C3%ADvia%20e%20gostaria%20de%20fazer%20um%20site%20igual!"
+          target="_blank"
+          className="inline-block bg-white text-[var(--color-highlight)] font-medium rounded-full px-5 py-2 text-sm hover:opacity-90 transition-all"
+        >
+          Fale comigo no WhatsApp 💬
+        </Link>
+      </div>
     </main>
   );
 }
