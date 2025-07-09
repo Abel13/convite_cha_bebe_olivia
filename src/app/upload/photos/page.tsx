@@ -4,9 +4,11 @@ import { ModalCode } from "@/components/templates/ModalCode";
 import { useGuestStore } from "@/store/guestStore";
 import Image from "next/image";
 import { Suspense, useEffect, useMemo, useState } from "react";
+import { FiGlobe, FiLock } from "react-icons/fi";
 
 export default function UploadPhotosPage() {
   const [files, setFiles] = useState<File[]>([]);
+  const [privacy, setPrivacy] = useState<string[]>([]);
   const [captions, setCaptions] = useState<string[]>([]);
   const [sending, setSending] = useState(false);
   const { guest } = useGuestStore((store) => store);
@@ -20,6 +22,8 @@ export default function UploadPhotosPage() {
     const selected = Array.from(e.target.files);
     setFiles(selected);
     setCaptions(new Array(selected.length).fill(""));
+    setCaptions(new Array(selected.length).fill(""));
+    setPrivacy(new Array(selected.length).fill("public")); // default
   };
 
   const handleUpload = async () => {
@@ -32,6 +36,7 @@ export default function UploadPhotosPage() {
     files.forEach((file, i) => {
       form.append("files", file);
       form.append(`caption-${i}`, captions[i] || "");
+      form.append(`privacy-${i}`, privacy[i] || "public");
     });
     const res = await fetch("/api/upload-photos", {
       method: "POST",
@@ -86,18 +91,21 @@ export default function UploadPhotosPage() {
         {previews.map((preview, index) => {
           return (
             <div
-              key={preview}
+              key={index}
               className="bg-white border border-[#e3c9c2] rounded shadow-sm p-2"
             >
               <div className="w-full h-48 relative mb-2">
-                <img
+                <Image
                   src={preview}
                   alt={`Preview ${index + 1}`}
+                  fill
                   style={{ objectFit: "cover", borderRadius: "0.5rem" }}
                 />
               </div>
+
+              {/* Legenda */}
               <input
-                className="w-full px-2 py-1 text-sm border rounded"
+                className="w-full px-2 py-1 text-sm border rounded mb-2"
                 value={captions[index]}
                 placeholder="Legenda da imagem"
                 onChange={(e) => {
@@ -106,6 +114,33 @@ export default function UploadPhotosPage() {
                   setCaptions(updated);
                 }}
               />
+
+              <div className="flex gap-2 items-center">
+                {privacy[index] === "public" ? (
+                  <FiGlobe size={24} color="#888" />
+                ) : (
+                  <FiLock size={24} color="#888" />
+                )}
+                <select
+                  className="w-full px-2 py-1 text-sm border rounded bg-white text-gray-700"
+                  value={privacy[index] || "public"}
+                  onChange={(e) => {
+                    const updated = [...privacy];
+                    updated[index] = e.target.value;
+                    setPrivacy(updated);
+                  }}
+                >
+                  <option value="public">Pública</option>
+                  <option value="private">Privada</option>
+                </select>
+              </div>
+              {privacy[index] === "public" ? (
+                <span className="text-xs">Visível para todos.</span>
+              ) : (
+                <span className="text-xs">
+                  Visível somente para convidados.
+                </span>
+              )}
             </div>
           );
         })}

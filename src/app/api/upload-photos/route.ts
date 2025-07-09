@@ -10,12 +10,16 @@ export async function POST(req: Request) {
   const captions = files.map(
     (_, i) => form.get(`caption-${i}`)?.toString() || ""
   );
+  const privacies = files.map((_, i) =>
+    form.get(`privacy-${i}`)?.toString() === "private" ? false : true
+  );
 
   const supabase = await createClient();
 
   for (let i = 0; i < files.length; i++) {
     const file = files[i];
     const caption = captions[i];
+    const privacy = privacies[i];
     const path = `${partyId}/${Date.now()}-${file.name}`;
 
     const { error: uploadError } = await supabase.storage
@@ -32,6 +36,7 @@ export async function POST(req: Request) {
       party_id: partyId,
       path,
       caption,
+      is_public: privacy,
     });
 
     if (photoError) {
