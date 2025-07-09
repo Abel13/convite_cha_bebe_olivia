@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     .from("rsvps")
     .upsert([
       {
-        party_id: process.env.NEXT_PUBLIC_PARTY_ID,
+        party_id: process.env.NEXT_PUBLIC_PARTY_ID!,
         contact,
         name,
         adults,

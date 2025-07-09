@@ -5,7 +5,7 @@ export async function fetchAlbumPhotos(partyId: string, guestCode?: string) {
 
   const { data, error } = await supabase.rpc("get_photos_by_code", {
     party_id: partyId,
-    guest_code: guestCode || null,
+    guest_code: guestCode,
   });
 
   console.log(data, error);
