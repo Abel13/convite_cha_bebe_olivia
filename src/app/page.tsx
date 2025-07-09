@@ -95,33 +95,29 @@ export default function Home() {
           15:00h
         </div>
 
-        {false && (
+        <div className="flex justify-between">
           <Link
             href="/confirm"
-            className="block bg-[var(--color-button-bg)] text-white rounded-full px-6 py-4 font-light text-center"
+            className="flex w-fit bg-[var(--color-button-bg)] text-white rounded-full px-6 py-4 font-light text-center"
           >
             Confirmar Presença
           </Link>
-        )}
 
-        {true && (
           <Link
             href="/album"
-            className="block bg-[var(--color-button-bg)] text-white rounded-full px-6 py-4 font-light text-center"
+            className="flex w-fit bg-[var(--color-button-bg)] text-white rounded-full px-6 py-4 font-light text-center"
           >
             Album de Fotos
           </Link>
-        )}
+        </div>
       </div>
 
-      {false && (
-        <Link
-          href="/gifts"
-          className="block bg-[var(--color-button-bg)] text-white rounded-full px-6 py-4 mt-6 font-light"
-        >
-          Lista de Presentes
-        </Link>
-      )}
+      <Link
+        href="/gifts"
+        className="block bg-[var(--color-button-bg)] text-white rounded-full px-6 py-4 mt-6 font-light"
+      >
+        Lista de Presentes
+      </Link>
 
       {false && (
         <div className="text-[color:var(--color-footer)] text-base mt-8 font-medium">
