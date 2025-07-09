@@ -3,7 +3,7 @@
 import { ModalCode } from "@/components/templates/ModalCode";
 import { useGuestStore } from "@/store/guestStore";
 import Image from "next/image";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 
 export default function UploadPhotosPage() {
   const [files, setFiles] = useState<File[]>([]);
@@ -11,7 +11,10 @@ export default function UploadPhotosPage() {
   const [sending, setSending] = useState(false);
   const { guest } = useGuestStore((store) => store);
 
-  console.log(guest);
+  const previews = useMemo(() => {
+    return files.map((file) => URL.createObjectURL(file));
+  }, [files]);
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
     const selected = Array.from(e.target.files);
@@ -44,6 +47,12 @@ export default function UploadPhotosPage() {
     }
   };
 
+  useEffect(() => {
+    return () => {
+      previews.forEach((url) => URL.revokeObjectURL(url));
+    };
+  }, [previews]);
+
   if (!guest)
     return (
       <Suspense fallback={null}>
@@ -62,28 +71,28 @@ export default function UploadPhotosPage() {
         Selecione as fotos da festa e adicione uma legenda se quiser!
       </p>
 
-      <input
-        type="file"
-        accept="image/*"
-        multiple
-        onChange={handleFileChange}
-        className="mb-6"
-      />
+      <label className="inline-flex items-center gap-2 cursor-pointer bg-[#e56552] text-white px-6 py-2 rounded hover:bg-[#d55444] transition mb-6">
+        📷 Selecionar fotos
+        <input
+          type="file"
+          accept="image/*"
+          multiple
+          onChange={handleFileChange}
+          className="hidden"
+        />
+      </label>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {files.map((file, index) => {
-          const preview = URL.createObjectURL(file);
-
+        {previews.map((preview, index) => {
           return (
             <div
-              key={index}
+              key={preview}
               className="bg-white border border-[#e3c9c2] rounded shadow-sm p-2"
             >
               <div className="w-full h-48 relative mb-2">
-                <Image
+                <img
                   src={preview}
                   alt={`Preview ${index + 1}`}
-                  fill
                   style={{ objectFit: "cover", borderRadius: "0.5rem" }}
                 />
               </div>
