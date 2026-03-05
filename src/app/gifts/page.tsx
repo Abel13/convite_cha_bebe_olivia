@@ -9,89 +9,89 @@ import { WEDDING_CONFIG } from "@/config/wedding";
 
 // Lista de presentes para casamento - cota lua de mel e itens de casa
 const gifts = [
-  { 
-    id: 0, 
-    name: "Cota Lua de Mel - Valor Livre", 
-    value: 0, 
+  {
+    id: 0,
+    name: "Cota Lua de Mel - Valor Livre",
+    value: 0,
     image: "/gifts/pix.png",
-    description: "Contribua com o valor que desejar para nossa lua de mem"
+    description: "Contribua com o valor que desejar para nossa lua de mem",
   },
   {
     id: 1,
     name: "Jantar Romântico",
     value: 150,
-    image: "/gifts/presente.jpeg",
-    description: "Um jantar especial na lua de mel"
+    image: "/gifts/dinner.png",
+    description: "Um jantar especial na lua de mel",
   },
   {
     id: 2,
     name: "Passeio de Barco",
     value: 300,
-    image: "/gifts/presente.jpeg",
-    description: "Passeio romântico de barco"
+    image: "/gifts/boat.png",
+    description: "Passeio romântico de barco",
   },
   {
     id: 3,
     name: "Noite em Hotel Luxo",
     value: 500,
-    image: "/gifts/presente.jpeg",
-    description: "Uma noite especial em hotel 5 estrelas"
+    image: "/gifts/hotel.png",
+    description: "Uma noite especial em hotel 5 estrelas",
   },
   {
     id: 4,
     name: "Spa para Casal",
     value: 400,
     image: "/gifts/presente.jpeg",
-    description: "Dia de relaxamento juntos"
+    description: "Dia de relaxamento juntos",
   },
   {
     id: 5,
     name: "Jogo de Panelas",
     value: 350,
     image: "/gifts/presente.jpeg",
-    description: "Para nossas refeições juntos"
+    description: "Para nossas refeições juntos",
   },
   {
     id: 6,
     name: "Liquidificador",
     value: 250,
     image: "/gifts/presente.jpeg",
-    description: "Para os cafés da manhã"
+    description: "Para os cafés da manhã",
   },
   {
     id: 7,
     name: "Aspirador de Pó",
     value: 450,
     image: "/gifts/presente.jpeg",
-    description: "Para manter nossa casa limpa"
+    description: "Para manter nossa casa limpa",
   },
   {
     id: 8,
     name: "Jogo de Toalhas",
     value: 180,
     image: "/gifts/presente.jpeg",
-    description: "Toalhas de banho e rosto"
+    description: "Toalhas de banho e rosto",
   },
   {
     id: 9,
     name: "Cafeteira",
     value: 280,
     image: "/gifts/presente.jpeg",
-    description: "Para os cafezinhos diários"
+    description: "Para os cafezinhos diários",
   },
   {
     id: 10,
     name: "Air Fryer",
     value: 380,
     image: "/gifts/presente.jpeg",
-    description: "Para preparar refeições saudáveis"
+    description: "Para preparar refeições saudáveis",
   },
   {
     id: 11,
     name: "Jogo de Lençóis",
     value: 220,
     image: "/gifts/presente.jpeg",
-    description: "Lençóis de algodão egípcio"
+    description: "Lençóis de algodão egípcio",
   },
 ];
 
@@ -135,7 +135,7 @@ export default function GiftsPage() {
       {/* Mensagem */}
       <div className="px-6 py-4 text-center">
         <p className="text-sm text-[var(--color-accent)] italic">
-          &ldquo;Sua presença é o maior presente! Mas se quiser nos presentear, 
+          &ldquo;Sua presença é o maior presente! Mas se quiser nos presentear,
           ficaremos muito gratos 💕&rdquo;
         </p>
       </div>
