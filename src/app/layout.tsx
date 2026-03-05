@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
-import { Poppins, Playfair_Display } from "next/font/google";
+import { Poppins, Playfair_Display, Cormorant_Garamond } from "next/font/google";
 import { Great_Vibes } from "next/font/google";
 import "./globals.css";
 import { ParallaxWrapper } from "../components/ParallaxWrapper";
@@ -15,7 +15,7 @@ const geistSans = Geist({
 
 // Fontes do Google
 const poppins = Poppins({
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-poppins",
 });
@@ -26,6 +26,12 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
 });
 
+const cormorant = Cormorant_Garamond({
+  weight: ["300", "400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-cormorant",
+});
+
 const greatVibes = Great_Vibes({
   weight: ["400"],
   subsets: ["latin"],
@@ -33,8 +39,13 @@ const greatVibes = Great_Vibes({
 });
 
 export const metadata: Metadata = {
-  title: "Chá de Bebê da Olívia",
-  description: "Convite especial para o chá da nossa pequena Olívia 💖",
+  title: "Alexandre & Lígia - 11.11.2026 💍",
+  description: "Você é nosso convidado especial! Venha celebrar conosco o dia mais importante das nossas vidas. 💕",
+  openGraph: {
+    title: "Alexandre & Lígia - Save the Date",
+    description: "11 de novembro de 2026 - Você é nosso convidado especial!",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -51,7 +62,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${poppins.variable} ${playfair.variable} ${greatVibes.variable} antialiased`}
+        className={`${geistSans.variable} ${poppins.variable} ${playfair.variable} ${cormorant.variable} ${greatVibes.variable} antialiased`}
       >
         <Toaster position="top-center" />
         <ParallaxWrapper>
