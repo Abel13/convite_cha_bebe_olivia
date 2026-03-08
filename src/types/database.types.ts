@@ -7,18 +7,98 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instanciate createClient with right options
+  // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "12.2.3 (519615d)"
+    PostgrestVersion: "14.4"
+  }
+  graphql_public: {
+    Tables: {
+      [_ in never]: never
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      graphql: {
+        Args: {
+          extensions?: Json
+          operationName?: string
+          query?: string
+          variables?: Json
+        }
+        Returns: Json
+      }
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
   }
   public: {
     Tables: {
+      gifts: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          external_link: string | null
+          id: string
+          image_url: string | null
+          is_purchased: boolean | null
+          name: string
+          party_id: string
+          price: number | null
+          priority: number | null
+          purchased_at: string | null
+          purchased_by: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          external_link?: string | null
+          id?: string
+          image_url?: string | null
+          is_purchased?: boolean | null
+          name: string
+          party_id: string
+          price?: number | null
+          priority?: number | null
+          purchased_at?: string | null
+          purchased_by?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          external_link?: string | null
+          id?: string
+          image_url?: string | null
+          is_purchased?: boolean | null
+          name?: string
+          party_id?: string
+          price?: number | null
+          priority?: number | null
+          purchased_at?: string | null
+          purchased_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gifts_party_id_fkey"
+            columns: ["party_id"]
+            isOneToOne: false
+            referencedRelation: "parties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       guests: {
         Row: {
           code: string
+          confirmed: boolean | null
           contact: string | null
           created_at: string | null
+          dietary_restrictions: string | null
           id: string
           name: string
           note: string | null
@@ -26,8 +106,10 @@ export type Database = {
         }
         Insert: {
           code?: string
+          confirmed?: boolean | null
           contact?: string | null
           created_at?: string | null
+          dietary_restrictions?: string | null
           id?: string
           name: string
           note?: string | null
@@ -35,8 +117,10 @@ export type Database = {
         }
         Update: {
           code?: string
+          confirmed?: boolean | null
           contact?: string | null
           created_at?: string | null
+          dietary_restrictions?: string | null
           id?: string
           name?: string
           note?: string | null
@@ -44,7 +128,7 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "fk_party_guests"
+            foreignKeyName: "guests_party_id_fkey"
             columns: ["party_id"]
             isOneToOne: false
             referencedRelation: "parties"
@@ -54,34 +138,58 @@ export type Database = {
       }
       parties: {
         Row: {
+          allow_plus_one: boolean | null
+          cover_image: string | null
           created_at: string | null
+          custom_message: string | null
           date: string | null
           description: string | null
           id: string
+          is_public: boolean | null
           location: string | null
+          max_guests: number | null
           name: string
           owner_id: string
+          pix_key: string | null
+          rsvp_deadline: string | null
           slug: string
+          theme_color: string | null
         }
         Insert: {
+          allow_plus_one?: boolean | null
+          cover_image?: string | null
           created_at?: string | null
+          custom_message?: string | null
           date?: string | null
           description?: string | null
           id?: string
+          is_public?: boolean | null
           location?: string | null
+          max_guests?: number | null
           name: string
-          owner_id?: string
+          owner_id: string
+          pix_key?: string | null
+          rsvp_deadline?: string | null
           slug: string
+          theme_color?: string | null
         }
         Update: {
+          allow_plus_one?: boolean | null
+          cover_image?: string | null
           created_at?: string | null
+          custom_message?: string | null
           date?: string | null
           description?: string | null
           id?: string
+          is_public?: boolean | null
           location?: string | null
+          max_guests?: number | null
           name?: string
           owner_id?: string
+          pix_key?: string | null
+          rsvp_deadline?: string | null
           slug?: string
+          theme_color?: string | null
         }
         Relationships: []
       }
@@ -91,6 +199,7 @@ export type Database = {
           created_at: string | null
           guest_id: string | null
           id: string
+          is_approved: boolean | null
           is_public: boolean | null
           party_id: string
           path: string
@@ -100,6 +209,7 @@ export type Database = {
           created_at?: string | null
           guest_id?: string | null
           id?: string
+          is_approved?: boolean | null
           is_public?: boolean | null
           party_id: string
           path: string
@@ -109,20 +219,21 @@ export type Database = {
           created_at?: string | null
           guest_id?: string | null
           id?: string
+          is_approved?: boolean | null
           is_public?: boolean | null
           party_id?: string
           path?: string
         }
         Relationships: [
           {
-            foreignKeyName: "fk_guest_photos"
+            foreignKeyName: "photos_guest_id_fkey"
             columns: ["guest_id"]
             isOneToOne: false
             referencedRelation: "guests"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "fk_party_photos"
+            foreignKeyName: "photos_party_id_fkey"
             columns: ["party_id"]
             isOneToOne: false
             referencedRelation: "parties"
@@ -136,6 +247,9 @@ export type Database = {
           children: number | null
           contact: string
           created_at: string | null
+          guest_id: string | null
+          id: string
+          message: string | null
           name: string
           party_id: string
         }
@@ -144,6 +258,9 @@ export type Database = {
           children?: number | null
           contact: string
           created_at?: string | null
+          guest_id?: string | null
+          id?: string
+          message?: string | null
           name: string
           party_id: string
         }
@@ -152,12 +269,22 @@ export type Database = {
           children?: number | null
           contact?: string
           created_at?: string | null
+          guest_id?: string | null
+          id?: string
+          message?: string | null
           name?: string
           party_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "fk_party"
+            foreignKeyName: "rsvps_guest_id_fkey"
+            columns: ["guest_id"]
+            isOneToOne: false
+            referencedRelation: "guests"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rsvps_party_id_fkey"
             columns: ["party_id"]
             isOneToOne: false
             referencedRelation: "parties"
@@ -170,6 +297,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      generate_guest_code: { Args: never; Returns: string }
       get_guest_by_code: {
         Args: { input_code: string }
         Returns: {
@@ -178,12 +306,12 @@ export type Database = {
         }[]
       }
       get_photos: {
-        Args: { input_party_id: string; input_guest_code: string }
+        Args: { input_guest_code: string; input_party_id: string }
         Returns: {
+          author: string
+          caption: string
           id: string
           path: string
-          caption: string
-          author: string
         }[]
       }
     }
@@ -314,6 +442,9 @@ export type CompositeTypes<
     : never
 
 export const Constants = {
+  graphql_public: {
+    Enums: {},
+  },
   public: {
     Enums: {},
   },
